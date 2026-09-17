@@ -17,23 +17,25 @@ const WEEK_DAYS = [
 
 export default function DaySelector({ selectedDate, onDateChange }: DaySelectorProps) {
   return (
-    <div className="flex gap-2 overflow-x-auto pb-2">
+    <div className="flex gap-3 overflow-x-auto pb-2">
       {WEEK_DAYS.map((day) => (
         <button
           key={day.date}
           onClick={() => onDateChange(day.date)}
           className={`
-            px-4 py-2 rounded-lg font-medium text-sm whitespace-nowrap
-            transition-colors
+            px-6 py-3 rounded-xl font-semibold text-sm whitespace-nowrap
+            transition-all duration-200 transform
             ${
               selectedDate === day.date
-                ? 'bg-blue-600 text-white shadow-md'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-gradient-to-br from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/50 scale-105'
+                : 'bg-white text-gray-700 hover:bg-gray-50 hover:shadow-md border border-gray-200'
             }
           `}
         >
-          <div className="text-xs opacity-75">{day.day}</div>
-          <div>{day.label.split(' ')[0]}</div>
+          <div className={`text-xs font-medium ${selectedDate === day.date ? 'opacity-90' : 'opacity-60'}`}>
+            {day.day}
+          </div>
+          <div className="mt-1">{day.label.split(' ')[0]}</div>
         </button>
       ))}
     </div>

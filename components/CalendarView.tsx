@@ -27,9 +27,10 @@ export default function CalendarView({ events, date }: CalendarViewProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
-      <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
-        <h2 className="text-lg font-semibold text-gray-900">
+    <div className="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden">
+      <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-purple-50">
+        <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+          <span className="text-xl">📅</span>
           Calendar — {formatDate(date)}
         </h2>
       </div>
@@ -44,16 +45,18 @@ export default function CalendarView({ events, date }: CalendarViewProps) {
             {sortedEvents.map((event, idx) => (
               <div
                 key={idx}
-                className="flex items-start gap-4 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex items-start gap-4 p-4 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-200 border border-transparent hover:border-blue-200 hover:shadow-md"
               >
-                <div className="flex-shrink-0 w-24 text-sm font-medium text-gray-600">
-                  {event.time}
+                <div className="flex-shrink-0 px-3 py-1.5 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg">
+                  <div className="text-sm font-bold text-blue-700">
+                    {event.time}
+                  </div>
                 </div>
                 <div className="flex-grow">
-                  <div className={`font-medium ${
+                  <div className={`font-semibold ${
                     event.event === 'Blocked' 
                       ? 'text-gray-400 italic' 
-                      : 'text-gray-900'
+                      : 'text-gray-800'
                   }`}>
                     {event.event}
                   </div>

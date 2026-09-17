@@ -47,16 +47,18 @@ export default function DailyBriefing({ data }: DailyBriefingProps) {
 
       {/* At Risk Items Alert (if any) */}
       {atRiskItems.length > 0 && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-          <div className="flex items-center gap-2">
-            <span className="text-red-600 text-xl">⚠️</span>
+        <div className="bg-gradient-to-r from-red-50 to-orange-50 border-2 border-red-200 rounded-2xl p-5 shadow-lg">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
+              <span className="text-2xl">⚠️</span>
+            </div>
             <div>
-              <h3 className="font-semibold text-red-900">
+              <h3 className="font-bold text-red-900 text-lg">
                 {atRiskItems.length} item{atRiskItems.length !== 1 ? 's' : ''} need{atRiskItems.length === 1 ? 's' : ''} attention
               </h3>
-              <p className="text-sm text-red-700">
-                {atRiskItems.filter(i => i.status === 'unowned').length > 0 && 'Unowned items require assignment. '}
-                {atRiskItems.filter(i => i.status === 'at_risk').length > 0 && 'Overdue or at-risk items need resolution.'}
+              <p className="text-sm text-red-700 mt-1">
+                {atRiskItems.filter(i => i.status === 'unowned').length > 0 && '🔸 Unowned items require assignment. '}
+                {atRiskItems.filter(i => i.status === 'at_risk').length > 0 && '🔸 Overdue or at-risk items need resolution.'}
               </p>
             </div>
           </div>
@@ -95,29 +97,29 @@ export default function DailyBriefing({ data }: DailyBriefingProps) {
 
       {/* Summary Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-2xl font-bold text-gray-900">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl border-2 border-blue-200 p-5 hover:shadow-lg transition-all duration-200 transform hover:scale-105">
+          <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             {calendarEvents.filter(e => e.date === selectedDate).length}
           </div>
-          <div className="text-sm text-gray-600">Calendar Events</div>
+          <div className="text-sm font-semibold text-blue-700 mt-1">Calendar Events</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-2xl font-bold text-blue-600">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl border-2 border-purple-200 p-5 hover:shadow-lg transition-all duration-200 transform hover:scale-105">
+          <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
             {commitmentsDue.length}
           </div>
-          <div className="text-sm text-gray-600">Commitments Due</div>
+          <div className="text-sm font-semibold text-purple-700 mt-1">Commitments Due</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-2xl font-bold text-red-600">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl border-2 border-red-200 p-5 hover:shadow-lg transition-all duration-200 transform hover:scale-105">
+          <div className="text-3xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
             {atRiskItems.length}
           </div>
-          <div className="text-sm text-gray-600">At Risk</div>
+          <div className="text-sm font-semibold text-red-700 mt-1">At Risk</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-2xl font-bold text-green-600">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl border-2 border-green-200 p-5 hover:shadow-lg transition-all duration-200 transform hover:scale-105">
+          <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
             {resolvedCommitments.filter(c => c.status === 'done').length}
           </div>
-          <div className="text-sm text-gray-600">Completed This Week</div>
+          <div className="text-sm font-semibold text-green-700 mt-1">Completed This Week</div>
         </div>
       </div>
     </div>

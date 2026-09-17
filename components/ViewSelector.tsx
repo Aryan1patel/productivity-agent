@@ -17,24 +17,27 @@ export default function ViewSelector({ currentView, onViewChange }: ViewSelector
   ];
 
   return (
-    <div className="bg-white border-b border-gray-200">
-      <div className="flex gap-1 px-2">
+    <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200 shadow-sm">
+      <div className="flex gap-2 px-4 py-2">
         {views.map((view) => (
           <button
             key={view.id}
             onClick={() => onViewChange(view.id)}
             className={`
-              flex items-center gap-2 px-4 py-3 font-medium text-sm
-              border-b-2 transition-colors
+              relative flex items-center gap-2 px-6 py-3 font-medium text-sm rounded-xl
+              transition-all duration-200 transform
               ${
                 currentView === view.id
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-600 hover:text-gray-900 hover:border-gray-300'
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg scale-105'
+                  : 'bg-gray-50 text-gray-600 hover:bg-gray-100 hover:text-gray-900 hover:scale-102'
               }
             `}
           >
-            <span>{view.icon}</span>
+            <span className="text-lg">{view.icon}</span>
             <span>{view.label}</span>
+            {currentView === view.id && (
+              <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-white rounded-full"></div>
+            )}
           </button>
         ))}
       </div>

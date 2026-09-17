@@ -34,29 +34,30 @@ export default function WeeklyStatusBoard({ commitments, onItemClick }: WeeklySt
   };
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
+    <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200 shadow-xl">
       {/* Header with Summary */}
-      <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+      <div className="px-6 py-5 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-purple-50">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900">
+          <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+            <span className="text-2xl">📊</span>
             Weekly Status Board
           </h2>
-          <div className="flex gap-4 text-sm">
-            <div className="flex items-center gap-1">
-              <div className="w-2 h-2 rounded-full bg-red-500"></div>
-              <span className="text-gray-600">At Risk: {summary.at_risk}</span>
+          <div className="flex gap-3 text-sm">
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-full shadow-sm">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></div>
+              <span className="font-medium text-gray-700">At Risk: {summary.at_risk}</span>
             </div>
-            <div className="flex items-center gap-1">
-              <div className="w-2 h-2 rounded-full bg-orange-500"></div>
-              <span className="text-gray-600">Unowned: {summary.unowned}</span>
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-full shadow-sm">
+              <div className="w-2.5 h-2.5 rounded-full bg-orange-500"></div>
+              <span className="font-medium text-gray-700">Unowned: {summary.unowned}</span>
             </div>
-            <div className="flex items-center gap-1">
-              <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-              <span className="text-gray-600">Open: {summary.open}</span>
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-full shadow-sm">
+              <div className="w-2.5 h-2.5 rounded-full bg-blue-500"></div>
+              <span className="font-medium text-gray-700">Open: {summary.open}</span>
             </div>
-            <div className="flex items-center gap-1">
-              <div className="w-2 h-2 rounded-full bg-green-500"></div>
-              <span className="text-gray-600">Done: {summary.done}</span>
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-full shadow-sm">
+              <div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+              <span className="font-medium text-gray-700">Done: {summary.done}</span>
             </div>
           </div>
         </div>
@@ -70,12 +71,11 @@ export default function WeeklyStatusBoard({ commitments, onItemClick }: WeeklySt
               key={idx}
               onClick={() => onItemClick?.(commitment)}
               className={`
-                p-4 rounded-lg border-2 transition-all cursor-pointer
-                ${commitment.status === 'at_risk' ? 'border-red-200 bg-red-50 hover:border-red-300' : ''}
-                ${commitment.status === 'unowned' ? 'border-orange-200 bg-orange-50 hover:border-orange-300' : ''}
-                ${commitment.status === 'open' ? 'border-blue-200 bg-blue-50 hover:border-blue-300' : ''}
-                ${commitment.status === 'done' ? 'border-green-200 bg-green-50 hover:border-green-300' : ''}
-                hover:shadow-md
+                p-5 rounded-xl border-2 transition-all duration-200 cursor-pointer transform hover:scale-105
+                ${commitment.status === 'at_risk' ? 'border-red-300 bg-gradient-to-br from-red-50 to-red-100 hover:border-red-400 hover:shadow-lg hover:shadow-red-200/50' : ''}
+                ${commitment.status === 'unowned' ? 'border-orange-300 bg-gradient-to-br from-orange-50 to-orange-100 hover:border-orange-400 hover:shadow-lg hover:shadow-orange-200/50' : ''}
+                ${commitment.status === 'open' ? 'border-blue-300 bg-gradient-to-br from-blue-50 to-blue-100 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-200/50' : ''}
+                ${commitment.status === 'done' ? 'border-green-300 bg-gradient-to-br from-green-50 to-green-100 hover:border-green-400 hover:shadow-lg hover:shadow-green-200/50' : ''}
               `}
             >
               {/* Header */}
