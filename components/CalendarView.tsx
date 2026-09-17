@@ -27,36 +27,37 @@ export default function CalendarView({ events, date }: CalendarViewProps) {
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden">
-      <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-purple-50">
-        <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-          <span className="text-xl">📅</span>
+    <div className="bg-white/5 backdrop-blur-2xl rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+      <div className="px-6 py-4 border-b border-white/10 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20">
+        <h2 className="text-lg font-black text-white flex items-center gap-3">
+          <span className="text-2xl">📅</span>
           Calendar — {formatDate(date)}
         </h2>
       </div>
       
       <div className="p-6">
         {sortedEvents.length === 0 ? (
-          <div className="text-center py-8 text-gray-500">
-            No events scheduled for this day
+          <div className="text-center py-12 text-gray-400">
+            <div className="text-5xl mb-3">📭</div>
+            <p className="text-base font-semibold">No events scheduled for this day</p>
           </div>
         ) : (
           <div className="space-y-3">
             {sortedEvents.map((event, idx) => (
               <div
                 key={idx}
-                className="flex items-start gap-4 p-4 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-200 border border-transparent hover:border-blue-200 hover:shadow-md"
+                className="group flex items-start gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-blue-400/50 hover:shadow-xl hover:shadow-blue-500/20 transform hover:scale-102"
               >
-                <div className="flex-shrink-0 px-3 py-1.5 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg">
-                  <div className="text-sm font-bold text-blue-700">
+                <div className="flex-shrink-0 px-4 py-2 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg border border-blue-400/30 shadow-lg">
+                  <div className="text-sm font-black text-blue-300">
                     {event.time}
                   </div>
                 </div>
                 <div className="flex-grow">
-                  <div className={`font-semibold ${
+                  <div className={`font-bold text-base ${
                     event.event === 'Blocked' 
-                      ? 'text-gray-400 italic' 
-                      : 'text-gray-800'
+                      ? 'text-gray-500 italic' 
+                      : 'text-white group-hover:text-blue-300 transition-colors'
                   }`}>
                     {event.event}
                   </div>
